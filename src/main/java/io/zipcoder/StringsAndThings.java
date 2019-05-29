@@ -1,6 +1,8 @@
 package io.zipcoder;
 
 
+import java.util.ArrayList;
+
 /**
  * @author tariq
  */
@@ -47,10 +49,7 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        int a = findMatches(input, "is");
-        int b = findMatches(input, "not");
-        System.out.println((a == b));
-        return  Boolean.valueOf(a == b);
+        return  (findMatches(input, "is") == findMatches(input, "not"));
     }
 
     // found online try to understand
@@ -60,7 +59,6 @@ public class StringsAndThings {
         int lastIndex = 0;
         int count = 0;
 
-
         while(lastIndex != -1){
             lastIndex = str.indexOf(findStr, lastIndex);
 
@@ -69,7 +67,6 @@ public class StringsAndThings {
                 lastIndex += findStr.length();
             }
         }
-        System.out.println(count);
         return count;
     }
 
@@ -81,7 +78,16 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+        Boolean result = true;
+        String [] inputArr = input.split("");
+
+        for(int i = 1; i<inputArr.length - 1; i++) {
+            if(inputArr[i].equals("g")){
+                if(!inputArr[i-1].equals("g") && !inputArr[i+1].equals("g"))
+                    result = false;
+            }
+        }
+        return result;
     }
 
 
@@ -93,6 +99,13 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        Integer counter = 0;
+        String [] inputArr = input.split("");
+        for(int i = 0; i<inputArr.length - 2; i++){
+            if(inputArr[i+1].equals(inputArr[i]) && inputArr[i+2].equals(inputArr[i])){
+                counter++;
+            }
+        }
+        return counter;
     }
 }
